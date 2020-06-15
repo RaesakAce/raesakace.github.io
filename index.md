@@ -15,7 +15,7 @@ I'm mainly a Data Scientist with knowledge of Python, Keras and sckit-learn libr
 
 ### Where can you find me
 
-[Marco Casaglia on LinkedIn](https://www.linkedin.com/in/marco-casaglia/)
+[Marco Casaglia on LinkedIn](https://www.linkedin.com/in/marco-casaglia-56844811b//)
 
 [![Twitter](http://i.imgur.com/wWzX9uB.png) @_Raesak_](https://twitter.com/_Raesak_)
 
