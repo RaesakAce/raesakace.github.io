@@ -23,4 +23,4 @@ I'm mainly a Data Scientist with knowledge of Python, Keras and sckit-learn libr
 
 [![Github](http://i.imgur.com/9I6NRUm.png) GitHub](https://github.com/raesakace/)
 
-Or you can just e-mail me at [marco.ace.casaglia@gmail.com](mailto:marco.ace.casaglia@gmail.com)
+e-mail me at [marco.ace.casaglia@gmail.com](mailto:marco.ace.casaglia@gmail.com)
