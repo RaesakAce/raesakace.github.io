@@ -8,7 +8,7 @@ I'm mainly Python programmer,with ML knowledge in Keras and sckit-learn librarie
 ### Projects i've worked on
 * [Scryfall Analysis](https://github.com/RaesakAce/scryfall-analysis) - still in development
 * [No Yaku Bot](https://github.com/RaesakAce/NoYakuBot) - a simple reddit bot in python
-* [Covid-19](https://github.com/RaesakAce/covid-19) - plotting covid-19 advancement in Italy (in development)
+* [Telegram Pi Bot](https://github.com/RaesakAce/Raspberry-Pi-Telegram-Bot) - A Telegram Bot in python running on RaspberryPi
 
 #### Game Jam Games
 
