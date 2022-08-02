@@ -6,7 +6,6 @@
 
 This is a biased compilation of technologies that are useful to learn in order to get a job as a web developer. It is in my opinion the smallest set of technologies you need to know about in order to work on the full stack of a website. Deployment will be avoided in this document since it is out of the strict scope of *developer* guide. Since most people use Windows, this guide will assume use Windows. I suggest, if possible and you're interested, using WSL2 in order to have a mostly Linux development environment, or just using Linux or Mac. All the technologies in this document work natively on all platforms, so using Windows is absolutely fine for all of our purposes.
 
-#
 
 ## Summary
 
@@ -17,7 +16,6 @@ This is a biased compilation of technologies that are useful to learn in order t
 - HTML and CSS
 - Frameworks
 
-# 
 
 <br>
 
@@ -42,22 +40,17 @@ Additionally I would start getting familiar with at least one of the major front
 But JavaScript will teach you bad habits, and  learning how languages use static typechecking will turn out useful if you want to get to other, more performant backend languages in the future. So TypeScript is perfect for that, when learning it you learn JavaScript too, but you get type checking, also most frameworks support it almost natively and it is much better if you work in a team.
 
 
-#
 
 ### Setting up the Development Environment
 
-#
 
 ### Typescript
 
-#
 
 ### Quick NodeJS explanation
 
-#
 
 ### HTML and CSS
 
-#
 
 ### Frameworks
