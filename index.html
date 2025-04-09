@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>ASCII Art converter</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>ASCII Art converter</h1>
+  <div class="col-lg-8 px-0">
+  <p>
+    Upload an image, select the desired number of columns and convert it in ASCII art
+  </p>
+  </div>
+
+  <input type="file" id="upload" accept="image/png, image/jpeg">
+  <br><br>
+  <label for="columns">Columns number (ASCII width): </label>
+  <input type="number" id="columns" value="100" min="10" max="300">
+  <br><br>
+  <input type="checkbox" id="toggleBackground" checked>
+  <label title="when disabled light areas are not shown" for="toggleBackground">Include background</label>
+  <br><br>
+  <input type="checkbox" id="toggleTransparency">
+  <label title="use whitespace for transparency" for="toggleTransparency">Handle alpha</label>
+  <br><br>
+  <input type="checkbox" id="toggleInversion">
+  <label title="invert gradient mapping for dark backgrounds" for="toggleInversion">Invert</label>
+  <br><br>
+  <button id="convert" class="btn btn-primary">Convert</button>
+
+  <h2>Result</h2>
+  <div id="result"></div>
+  <br>
+  <button class="btn btn-outline-success" id="download" style="display:none;">Download ASCII Art</button>
+
+
+  <canvas id="canvas" style="display:none;"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  
+</body>
+</html>
