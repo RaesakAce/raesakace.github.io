@@ -95,7 +95,7 @@ function convert(img) {
     downloadLink.href = URL.createObjectURL(blob);
     downloadLink.download = "ascii_art.txt";
     downloadLink.style.display = "inline-block";
-    downloadLink.textContent = "Scarica ASCII Art";
+    downloadLink.textContent = "Download ASCII Art";
 }
 
 
@@ -103,7 +103,7 @@ function convert(img) {
 document.getElementById('convert').addEventListener('click', async function () {
     const fileInput = document.getElementById('upload');
     if (fileInput.files.length === 0) {
-        alert("Seleziona un'immagine prima di procedere.");
+        alert("Please select an image before continuing");
         return;
     }
 

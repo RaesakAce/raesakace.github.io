@@ -22,11 +22,3 @@ button {
 button {
     margin-top: 10px;
 }
-
-.reveal {
-    visibility: hidden;
-}
-
-.reveal:hov{
-    visibility: visible;
-}
