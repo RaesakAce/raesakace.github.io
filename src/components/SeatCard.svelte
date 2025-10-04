@@ -29,7 +29,12 @@
 </script>
 
 <div class={`card seat-card ${orientation}`}>
-  <div class="seat-wind">{currentPlayer?.wind ?? ""}</div>
+  <div class="seat-header">
+    <div class="seat-wind">{currentPlayer?.wind ?? ""}</div>
+    {#if currentPlayer?.wind === "E"}
+      <span class="dealer-flag" title="Dealer" aria-label="Dealer">Dealer</span>
+    {/if}
+  </div>
 
   <input class="name" value={currentPlayer?.name ?? ""} on:change={handleNameChange} disabled={!currentPlayer} />
 

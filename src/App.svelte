@@ -23,6 +23,24 @@
 
 <div class="table-shell">
   <div class="table-frame">
+    <div class="table-status card">
+      <div class="status-main">
+        <span class="status-round" aria-label="Round" title="Round">{roundLabel}</span>
+        <span class="status-pill dealer" aria-label="Dealer" title="Dealer">
+          D {dealerPlayer ? dealerPlayer.name : "—"}
+        </span>
+        <span class="status-pill" aria-label="Honba" title="Honba">H {s.honba}</span>
+        <span class="status-pill" aria-label="Riichi pot" title="Riichi pot">R {s.riichiPot}</span>
+      </div>
+      <div class="status-actions">
+        <button class="status-btn primary" on:click={openNewHand} aria-label="New hand" title="New hand">+</button>
+        <button class="status-btn" on:click={undo} disabled={!s.history.length} aria-label="Undo" title="Undo">U</button>
+        <button class="status-btn" on:click={() => historyOpen = true} disabled={!s.history.length} aria-label="History" title="History">H</button>
+        <button class="status-btn" on:click={() => settingsOpen = true} aria-label="Settings" title="Settings">S</button>
+        <button class="status-btn danger" on:click={reset} aria-label="Reset match" title="Reset match">R</button>
+      </div>
+    </div>
+
     <div class="table-grid">
       <div class="seat north">
         <SeatCard side="north" orientation="north" on:win={handleSeatWin} />
@@ -30,35 +48,6 @@
 
       <div class="seat west">
         <SeatCard side="west" orientation="west" on:win={handleSeatWin} />
-      </div>
-
-      <div class="table-center card">
-        <div class="round-display">{s.roundWind}</div>
-        <div class="round-info">
-          <div>
-            <div class="label">Round</div>
-            <div class="value">{roundLabel}</div>
-          </div>
-          <div>
-            <div class="label">Dealer</div>
-            <div class="value">{dealerPlayer ? `${dealerPlayer.wind} · ${dealerPlayer.name}` : "—"}</div>
-          </div>
-          <div>
-            <div class="label">Honba</div>
-            <div class="value">{s.honba}</div>
-          </div>
-          <div>
-            <div class="label">Riichi Pot</div>
-            <div class="value">{s.riichiPot}</div>
-          </div>
-        </div>
-        <div class="controls">
-          <button class="primary" on:click={openNewHand}>New Hand</button>
-          <button on:click={undo} disabled={!s.history.length}>Undo</button>
-          <button on:click={() => historyOpen = true} disabled={!s.history.length}>History</button>
-          <button on:click={() => settingsOpen = true}>Settings</button>
-          <button class="ghost" on:click={reset}>Reset Match</button>
-        </div>
       </div>
 
       <div class="seat east">

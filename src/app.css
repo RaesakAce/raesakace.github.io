@@ -55,10 +55,109 @@ body { background: var(--bg); color: var(--text); font: 16px system-ui, -apple-s
   max-height: 100%;
   aspect-ratio: 16 / 9;
   display: flex;
+  position: relative;
 }
 
 .table-frame > .table-grid {
   flex: 1;
+}
+
+.table-status {
+  position: absolute;
+  top: clamp(10px, 2vh, 18px);
+  left: clamp(10px, 2vw, 20px);
+  display: grid;
+  gap: 6px;
+  padding: clamp(8px, 1.8vh, 12px) clamp(10px, 2vw, 14px);
+  font-size: clamp(12px, 1.7vh, 14px);
+  background: rgba(17, 24, 39, 0.92);
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  z-index: 4;
+  min-width: clamp(150px, 32vw, 220px);
+}
+
+.status-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-round {
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: clamp(13px, 1.8vh, 15px);
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.16);
+  color: var(--accent);
+}
+
+.status-pill {
+  padding: 4px 8px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  font-weight: 600;
+}
+
+.status-pill.dealer {
+  max-width: clamp(90px, 40vw, 150px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.status-btn {
+  width: clamp(32px, 6vw, 40px);
+  height: clamp(32px, 6vw, 40px);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: clamp(12px, 1.8vh, 14px);
+  border-radius: 10px;
+  padding: 0;
+  border: 1px solid #1f2937;
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--text);
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.status-btn.primary {
+  background: var(--accent);
+  color: #03242a;
+  border-color: transparent;
+}
+
+.status-btn.primary:hover:not(:disabled) {
+  background: #27e6ff;
+}
+
+.status-btn:hover:not(:disabled) {
+  background: rgba(30, 41, 59, 0.85);
+}
+
+.status-btn.danger {
+  background: rgba(127, 29, 29, 0.3);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: var(--danger);
+}
+
+.status-btn.danger:hover:not(:disabled) {
+  background: rgba(127, 29, 29, 0.45);
+}
+
+.status-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 button {
@@ -105,7 +204,7 @@ input, select {
   grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
   grid-template-areas:
     ". north ."
-    "west center east"
+    "west . east"
     ". south .";
   gap: clamp(12px, 2vw, 20px);
   align-items: center;
@@ -124,50 +223,6 @@ input, select {
 .seat.east { grid-area: east; }
 .seat.west { grid-area: west; }
 
-.table-center {
-  grid-area: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(8px, 1.6vh, 16px);
-  text-align: center;
-  padding: clamp(12px, 2.8vh, 20px);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.round-display {
-  font-size: clamp(2.6rem, 9vmin, 4.8rem);
-  font-weight: 800;
-  letter-spacing: 2px;
-}
-
-.round-info {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(6px, 1.6vh, 16px);
-  text-align: left;
-}
-.round-info .label {
-  color: var(--muted);
-  font-size: clamp(11px, 1.8vh, 14px);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.round-info .value { font-size: clamp(14px, 3vh, 20px); font-weight: 700; }
-
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(8px, 2vw, 14px);
-}
-
-.controls button {
-  flex: 1 1 clamp(120px, 26%, 200px);
-}
-
 .seat-card {
   display: flex;
   flex-direction: column;
@@ -178,7 +233,24 @@ input, select {
   min-width: clamp(130px, 18vw, 200px);
   transform-origin: center;
 }
+.seat-card .seat-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
 .seat-card .seat-wind { font-size: clamp(24px, 6vh, 32px); font-weight: 800; letter-spacing: 2px; }
+.seat-card .dealer-flag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: clamp(10px, 1.6vh, 12px);
+  font-weight: 700;
+  background: rgba(34, 211, 238, 0.15);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 .seat-card .name {
   width: 100%;
   text-align: center;
@@ -248,7 +320,6 @@ input, select {
   .seat-card.south,
   .seat-card.east,
   .seat-card.west { transform: rotate(0deg); }
-  .round-info { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hand-inputs { grid-template-columns: 1fr; }
   .hand-wizard .delta-grid { grid-template-columns: repeat(2, minmax(60px, 1fr)); }
 }
@@ -258,9 +329,9 @@ input, select {
     grid-template-columns: repeat(2, minmax(140px, 1fr));
     grid-template-rows: repeat(3, auto);
     grid-template-areas:
-      "center center"
-      "north south"
-      "west east";
+      "north north"
+      "west east"
+      "south south";
     gap: clamp(10px, 4vw, 20px);
     padding: clamp(10px, 4vw, 20px);
   }
@@ -271,8 +342,6 @@ input, select {
     grid-template-columns: minmax(110px, 1fr) minmax(260px, 1.15fr) minmax(110px, 1fr);
     gap: clamp(10px, 2vw, 16px);
   }
-  .table-center { padding: clamp(14px, 3vh, 20px); }
-  .controls { gap: clamp(6px, 1.8vw, 12px); }
   .seat-card { padding: clamp(12px, 2.6vh, 18px); gap: clamp(6px, 2vh, 12px); }
   .seat-card .name { font-size: clamp(13px, 2.2vh, 16px); }
   .seat-card .points { font-size: clamp(1.4rem, 4vw, 2.2rem); }
@@ -281,27 +350,32 @@ input, select {
 @media (orientation: landscape) and (max-height: 540px) {
   body { font-size: 14px; }
   .table-grid { padding: clamp(10px, 2vh, 16px); }
-  .table-center { gap: clamp(8px, 2vh, 16px); }
-  .round-display { font-size: clamp(2.4rem, 12vh, 3.6rem); }
-  .round-info .value { font-size: clamp(14px, 4vh, 18px); }
-  .controls { gap: clamp(6px, 2vw, 10px); }
-  .controls button {
-    flex: 1 1 clamp(120px, 28vw, 180px);
-    padding: clamp(6px, 1.6vh, 10px) clamp(10px, 2.6vw, 14px);
-    font-size: clamp(0.75rem, 1.8vh, 0.9rem);
+  .table-status {
+    top: clamp(6px, 1.2vh, 10px);
+    left: clamp(6px, 1.8vw, 12px);
+    gap: 4px;
+    padding: clamp(6px, 1.4vh, 10px) clamp(8px, 1.8vw, 12px);
+    min-width: clamp(130px, 32vw, 180px);
+  }
+  .status-actions { gap: 4px; }
+  .status-btn {
+    width: clamp(26px, 5vw, 34px);
+    height: clamp(26px, 5vw, 34px);
+    font-size: clamp(11px, 1.6vh, 13px);
   }
   .seat-card {
     padding: clamp(8px, 2vh, 16px);
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
-      "wind name"
+      "header name"
       "points points"
       "riichi win";
     align-items: center;
     gap: clamp(6px, 1.6vh, 10px);
   }
-  .seat-card .seat-wind { grid-area: wind; justify-self: center; font-size: clamp(18px, 6vh, 24px); }
+  .seat-card .seat-header { grid-area: header; justify-self: center; }
+  .seat-card .seat-wind { font-size: clamp(18px, 6vh, 24px); }
   .seat-card .name { grid-area: name; }
   .seat-card .points { grid-area: points; font-size: clamp(1.15rem, 4.4vh, 1.8rem); }
   .seat-card .riichi { grid-area: riichi; }
