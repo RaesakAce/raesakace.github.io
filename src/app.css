@@ -189,7 +189,14 @@ input, select {
 .h2 { font-size: 16px; font-weight: 700; color: var(--muted); }
 .link { color: var(--accent); text-decoration: none; }
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: grid; place-items: center; z-index: 20; }
-.modal .panel { width: min(560px, 94vw); }
+.modal .panel {
+  width: min(560px, 92vw);
+  max-height: min(92vh, 92vw);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .warn { color: var(--danger); }
 
 .primary { background: var(--accent); color: #03242a; border-color: transparent; }
@@ -297,7 +304,7 @@ input, select {
 .hand-wizard .result legend { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-right: 12px; color: var(--muted); }
 .hand-wizard .result label { display: flex; gap: 6px; align-items: center; }
 .hand-wizard .result label.disabled { opacity: .4; }
-.hand-inputs { grid-template-columns: repeat(2, minmax(140px, 1fr)); gap: 16px; }
+.hand-inputs { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
 .hand-wizard .field { display: grid; gap: 6px; }
 .hand-wizard .draw-inputs { display: grid; gap: 10px; }
 .hand-wizard .draw-inputs .row { justify-content: flex-start; }
@@ -310,6 +317,12 @@ input, select {
 .hand-wizard .delta-grid .label { display: block; color: var(--muted); font-size: 12px; text-transform: uppercase; }
 .hand-wizard .delta-grid .value { font-weight: 700; font-size: 16px; }
 
+.panel-facing-north,
+.panel-facing-east,
+.panel-facing-west,
+.panel-facing-south {
+  transform-origin: center;
+}
 .panel-facing-north { transform: rotate(180deg); }
 .panel-facing-east { transform: rotate(-90deg); }
 .panel-facing-west { transform: rotate(90deg); }

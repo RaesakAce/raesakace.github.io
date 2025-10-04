@@ -38,7 +38,7 @@
     aria-modal="true"
     aria-label={title}
     tabindex="-1"
-    style={`width:${width};${bodyStyle ?? ""}`}
+    style={`width:${width};max-height:min(92vh, 92vw);${bodyStyle ?? ""}`}
     bind:this={container}
   >
     <div class="row modal-header">

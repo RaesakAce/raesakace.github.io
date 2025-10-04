@@ -153,7 +153,12 @@
   }
 </script>
 
-<Modal title="New Hand" bodyClass={`panel-facing-${facing}`} on:close={handleCancel}>
+<Modal
+  title="New Hand"
+  width="min(520px, 92vw, 80vh)"
+  bodyClass={`panel-facing-${facing}`}
+  on:close={handleCancel}
+>
   <form class="hand-wizard" on:submit={handleSubmit}>
     <fieldset class="result">
       <legend>Result</legend>
