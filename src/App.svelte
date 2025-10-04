@@ -21,50 +21,52 @@
   }
 </script>
 
-<div class="table-grid">
-  <div class="seat north">
-    <SeatCard side="north" orientation="north" on:win={handleSeatWin} />
-  </div>
+<div class="table-shell">
+  <div class="table-grid">
+    <div class="seat north">
+      <SeatCard side="north" orientation="north" on:win={handleSeatWin} />
+    </div>
 
-  <div class="seat west">
-    <SeatCard side="west" orientation="west" on:win={handleSeatWin} />
-  </div>
+    <div class="seat west">
+      <SeatCard side="west" orientation="west" on:win={handleSeatWin} />
+    </div>
 
-  <div class="table-center card">
-    <div class="round-display">{s.roundWind}</div>
-    <div class="round-info">
-      <div>
-        <div class="label">Round</div>
-        <div class="value">{roundLabel}</div>
+    <div class="table-center card">
+      <div class="round-display">{s.roundWind}</div>
+      <div class="round-info">
+        <div>
+          <div class="label">Round</div>
+          <div class="value">{roundLabel}</div>
+        </div>
+        <div>
+          <div class="label">Dealer</div>
+          <div class="value">{dealerPlayer ? `${dealerPlayer.wind} · ${dealerPlayer.name}` : "—"}</div>
+        </div>
+        <div>
+          <div class="label">Honba</div>
+          <div class="value">{s.honba}</div>
+        </div>
+        <div>
+          <div class="label">Riichi Pot</div>
+          <div class="value">{s.riichiPot}</div>
+        </div>
       </div>
-      <div>
-        <div class="label">Dealer</div>
-        <div class="value">{dealerPlayer ? `${dealerPlayer.wind} · ${dealerPlayer.name}` : "—"}</div>
-      </div>
-      <div>
-        <div class="label">Honba</div>
-        <div class="value">{s.honba}</div>
-      </div>
-      <div>
-        <div class="label">Riichi Pot</div>
-        <div class="value">{s.riichiPot}</div>
+      <div class="controls">
+        <button class="primary" on:click={openNewHand}>New Hand</button>
+        <button on:click={undo} disabled={!s.history.length}>Undo</button>
+        <button on:click={() => historyOpen = true} disabled={!s.history.length}>History</button>
+        <button on:click={() => settingsOpen = true}>Settings</button>
+        <button class="ghost" on:click={reset}>Reset Match</button>
       </div>
     </div>
-    <div class="controls">
-      <button class="primary" on:click={openNewHand}>New Hand</button>
-      <button on:click={undo} disabled={!s.history.length}>Undo</button>
-      <button on:click={() => historyOpen = true} disabled={!s.history.length}>History</button>
-      <button on:click={() => settingsOpen = true}>Settings</button>
-      <button class="ghost" on:click={reset}>Reset Match</button>
+
+    <div class="seat east">
+      <SeatCard side="east" orientation="east" on:win={handleSeatWin} />
     </div>
-  </div>
 
-  <div class="seat east">
-    <SeatCard side="east" orientation="east" on:win={handleSeatWin} />
-  </div>
-
-  <div class="seat south">
-    <SeatCard side="south" orientation="south" on:win={handleSeatWin} />
+    <div class="seat south">
+      <SeatCard side="south" orientation="south" on:win={handleSeatWin} />
+    </div>
   </div>
 </div>
 
