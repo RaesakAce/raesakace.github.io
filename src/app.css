@@ -63,9 +63,9 @@ body { background: var(--bg); color: var(--text); font: 16px system-ui, -apple-s
 }
 
 .table-status {
-  position: absolute;
-  top: clamp(10px, 2vh, 18px);
-  left: clamp(10px, 2vw, 20px);
+  position: fixed;
+  top: calc(var(--safe-top) + clamp(8px, 2vh, 16px));
+  left: calc(var(--safe-left) + clamp(8px, 2vw, 18px));
   display: grid;
   gap: 6px;
   padding: clamp(8px, 1.8vh, 12px) clamp(10px, 2vw, 14px);
@@ -74,7 +74,7 @@ body { background: var(--bg); color: var(--text); font: 16px system-ui, -apple-s
   border-radius: 14px;
   border: 1px solid rgba(148, 163, 184, 0.2);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-  z-index: 4;
+  z-index: 5;
   min-width: clamp(150px, 32vw, 220px);
 }
 
@@ -188,7 +188,7 @@ input, select {
 .h1 { font-size: 22px; font-weight: 800; }
 .h2 { font-size: 16px; font-weight: 700; color: var(--muted); }
 .link { color: var(--accent); text-decoration: none; }
-.modal { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: grid; place-items: center; }
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: grid; place-items: center; z-index: 20; }
 .modal .panel { width: min(560px, 94vw); }
 .warn { color: var(--danger); }
 
@@ -351,8 +351,8 @@ input, select {
   body { font-size: 14px; }
   .table-grid { padding: clamp(10px, 2vh, 16px); }
   .table-status {
-    top: clamp(6px, 1.2vh, 10px);
-    left: clamp(6px, 1.8vw, 12px);
+    top: calc(var(--safe-top) + clamp(4px, 1.2vh, 8px));
+    left: calc(var(--safe-left) + clamp(4px, 1.6vw, 10px));
     gap: 4px;
     padding: clamp(6px, 1.4vh, 10px) clamp(8px, 1.8vw, 12px);
     min-width: clamp(130px, 32vw, 180px);

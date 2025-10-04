@@ -21,26 +21,26 @@
   }
 </script>
 
+<div class="table-status card">
+  <div class="status-main">
+    <span class="status-round" aria-label="Round" title="Round">{roundLabel}</span>
+    <span class="status-pill dealer" aria-label="Dealer" title="Dealer">
+      D {dealerPlayer ? dealerPlayer.name : "—"}
+    </span>
+    <span class="status-pill" aria-label="Honba" title="Honba">H {s.honba}</span>
+    <span class="status-pill" aria-label="Riichi pot" title="Riichi pot">R {s.riichiPot}</span>
+  </div>
+  <div class="status-actions">
+    <button class="status-btn primary" on:click={openNewHand} aria-label="New hand" title="New hand">+</button>
+    <button class="status-btn" on:click={undo} disabled={!s.history.length} aria-label="Undo" title="Undo">U</button>
+    <button class="status-btn" on:click={() => historyOpen = true} disabled={!s.history.length} aria-label="History" title="History">H</button>
+    <button class="status-btn" on:click={() => settingsOpen = true} aria-label="Settings" title="Settings">S</button>
+    <button class="status-btn danger" on:click={reset} aria-label="Reset match" title="Reset match">R</button>
+  </div>
+</div>
+
 <div class="table-shell">
   <div class="table-frame">
-    <div class="table-status card">
-      <div class="status-main">
-        <span class="status-round" aria-label="Round" title="Round">{roundLabel}</span>
-        <span class="status-pill dealer" aria-label="Dealer" title="Dealer">
-          D {dealerPlayer ? dealerPlayer.name : "—"}
-        </span>
-        <span class="status-pill" aria-label="Honba" title="Honba">H {s.honba}</span>
-        <span class="status-pill" aria-label="Riichi pot" title="Riichi pot">R {s.riichiPot}</span>
-      </div>
-      <div class="status-actions">
-        <button class="status-btn primary" on:click={openNewHand} aria-label="New hand" title="New hand">+</button>
-        <button class="status-btn" on:click={undo} disabled={!s.history.length} aria-label="Undo" title="Undo">U</button>
-        <button class="status-btn" on:click={() => historyOpen = true} disabled={!s.history.length} aria-label="History" title="History">H</button>
-        <button class="status-btn" on:click={() => settingsOpen = true} aria-label="Settings" title="Settings">S</button>
-        <button class="status-btn danger" on:click={reset} aria-label="Reset match" title="Reset match">R</button>
-      </div>
-    </div>
-
     <div class="table-grid">
       <div class="seat north">
         <SeatCard side="north" orientation="north" on:win={handleSeatWin} />
