@@ -156,7 +156,7 @@ function applyDelta(players: TableState["players"], result: HandResult): TableSt
   return next;
 }
 
-// After a win, nobody remains in riichi – clear the flag on every seat.
+// After a hand resolves, nobody remains in riichi – clear the flag on every seat.
 function clearRiichiFlags(players: TableState["players"]): TableState["players"] {
   const next = clonePlayers(players);
   for (const side of sides) {
@@ -203,9 +203,7 @@ function resetPlayersToStart(current: TableState): TableState["players"] {
 // Update table state after resolving a single hand.
 function applyResolvedResult(state: TableState, result: HandResult) {
   let players = applyDelta(state.players, result);
-  if (result.kind !== "draw") {
-    players = clearRiichiFlags(players);
-  }
+  players = clearRiichiFlags(players);
 
   let honba = state.honba;
   let roundWind: Wind = state.roundWind;
@@ -282,12 +280,17 @@ export function toggleRiichi(side: Side) {
   state.update(current => {
     const players = clonePlayers(current.players);
     const player = players[side];
-    if (player.riichi || player.points < 1000) {
-      return current;
+
+    if (!player.riichi) {
+      if (player.points < 1000) return current;
+      player.points -= 1000;
+      player.riichi = true;
+      return { ...current, players, riichiPot: current.riichiPot + 1 };
     }
-    player.points -= 1000;
-    player.riichi = true;
-    return { ...current, players, riichiPot: current.riichiPot + 1 };
+
+    player.points += 1000;
+    player.riichi = false;
+    return { ...current, players, riichiPot: Math.max(0, current.riichiPot - 1) };
   });
 }
 

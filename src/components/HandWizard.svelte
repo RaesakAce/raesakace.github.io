@@ -4,6 +4,8 @@
   import type { HandInput, Seat, Side } from "../lib/riichi";
 
   const seatOptions: Seat[] = ["E", "S", "W", "N"];
+  const hanOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  const fuOptions = [20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 110];
 
   interface Draft {
     kind: HandInput["kind"];
@@ -92,8 +94,7 @@
     showPreview = false;
   }
 
-  function handleWinnerChange(event: Event) {
-    const value = (event.target as HTMLSelectElement).value as Seat;
+  function setWinner(value: Seat) {
     let discarder = draft.discarder;
     if (draft.kind === "ron" && value === discarder) {
       discarder = seatOptions.find(seat => seat !== value) ?? discarder;
@@ -101,20 +102,17 @@
     draft = { ...draft, winner: value, discarder };
   }
 
-  function handleDiscarderChange(event: Event) {
-    const value = (event.target as HTMLSelectElement).value as Seat;
+  function setDiscarder(value: Seat) {
     if (value === draft.winner) return;
     draft = { ...draft, discarder: value };
   }
 
-  function handleHanChange(event: Event) {
-    const value = Number((event.target as HTMLInputElement).value);
-    draft = { ...draft, han: Math.max(1, Math.min(13, value || 1)) };
+  function setHan(value: number) {
+    draft = { ...draft, han: Math.max(1, Math.min(13, value)) };
   }
 
-  function handleFuChange(event: Event) {
-    const value = Number((event.target as HTMLInputElement).value);
-    draft = { ...draft, fu: Math.max(20, value || 20) };
+  function setFu(value: number) {
+    draft = { ...draft, fu: Math.max(20, value) };
   }
 
   function toggleTenpai(seat: Seat, event: Event) {
@@ -197,35 +195,71 @@
 
     {#if draft.kind !== "draw"}
       <div class="grid hand-inputs">
-        <label class="field">
+        <div class="field">
           <span class="label">Winner</span>
-          <select value={draft.winner} on:change={handleWinnerChange}>
+          <div class="choice-grid seat-grid" role="group" aria-label="Winner seat">
             {#each seatOptions as seat}
-              <option value={seat}>{seat}</option>
+              <button
+                type="button"
+                class={`choice-chip ${draft.winner === seat ? "active" : ""}`}
+                on:click={() => setWinner(seat)}
+                aria-pressed={draft.winner === seat}
+              >
+                {seat}
+              </button>
             {/each}
-          </select>
-        </label>
+          </div>
+        </div>
 
         {#if draft.kind === "ron"}
-          <label class="field">
+          <div class="field">
             <span class="label">Discarder</span>
-            <select value={draft.discarder} on:change={handleDiscarderChange}>
+            <div class="choice-grid seat-grid" role="group" aria-label="Discarder seat">
               {#each seatOptions.filter(seat => seat !== draft.winner) as seat}
-                <option value={seat}>{seat}</option>
+                <button
+                  type="button"
+                  class={`choice-chip ${draft.discarder === seat ? "active" : ""}`}
+                  on:click={() => setDiscarder(seat)}
+                  aria-pressed={draft.discarder === seat}
+                >
+                  {seat}
+                </button>
               {/each}
-            </select>
-          </label>
+            </div>
+          </div>
         {/if}
 
-        <label class="field">
+        <div class="field">
           <span class="label">Han</span>
-          <input type="number" min="1" max="13" value={draft.han} on:change={handleHanChange} />
-        </label>
+          <div class="choice-grid han-grid" role="group" aria-label="Han">
+            {#each hanOptions as han}
+              <button
+                type="button"
+                class={`choice-chip ${draft.han === han ? "active" : ""}`}
+                on:click={() => setHan(han)}
+                aria-pressed={draft.han === han}
+              >
+                {han}
+              </button>
+            {/each}
+          </div>
+        </div>
 
-        <label class="field">
+        <div class="field">
           <span class="label">Fu</span>
-          <input type="number" min="20" step="10" value={draft.fu} on:change={handleFuChange} />
-        </label>
+          <div class="choice-grid fu-grid" role="group" aria-label="Fu">
+            {#each fuOptions as fu}
+              <button
+                type="button"
+                class={`choice-chip ${draft.fu === fu ? "active" : ""}`}
+                on:click={() => setFu(fu)}
+                aria-pressed={draft.fu === fu}
+              >
+                {fu}
+              </button>
+            {/each}
+          </div>
+        </div>
       </div>
     {/if}
 

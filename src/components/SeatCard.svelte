@@ -43,10 +43,11 @@
   <button
     class={`riichi ${currentPlayer?.riichi ? "active" : ""}`}
     aria-pressed={currentPlayer?.riichi ?? false}
+    title={currentPlayer?.riichi ? "Cancel riichi declaration" : "Declare riichi"}
     on:click={handleRiichi}
     disabled={!currentPlayer}
   >
-    {currentPlayer?.riichi ? "Riichi Declared" : "Declare Riichi"}
+    {currentPlayer?.riichi ? "Cancel Riichi" : "Declare Riichi"}
   </button>
 
   <button class="win" on:click={handleWin} disabled={!currentPlayer}>I Won</button>

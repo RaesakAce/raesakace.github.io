@@ -306,6 +306,34 @@ input, select {
 .hand-wizard .result label.disabled { opacity: .4; }
 .hand-inputs { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
 .hand-wizard .field { display: grid; gap: 6px; }
+.hand-wizard .choice-grid {
+  display: grid;
+  gap: 8px;
+}
+.hand-wizard .seat-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.hand-wizard .han-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.hand-wizard .fu-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.hand-wizard .choice-chip {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #1f2937;
+  background: #0f172a;
+  color: var(--text);
+  padding: 8px 10px;
+  font-size: 14px;
+  line-height: 1;
+}
+.hand-wizard .choice-chip.active {
+  border-color: var(--accent);
+  background: rgba(34, 211, 238, 0.2);
+  color: #b9f6ff;
+}
 .hand-wizard .draw-inputs { display: grid; gap: 10px; }
 .hand-wizard .draw-inputs .row { justify-content: flex-start; }
 .hand-wizard .actions { display: flex; align-items: center; gap: 12px; }
@@ -334,6 +362,8 @@ input, select {
   .seat-card.east,
   .seat-card.west { transform: rotate(0deg); }
   .hand-inputs { grid-template-columns: 1fr; }
+  .hand-wizard .han-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .hand-wizard .fu-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hand-wizard .delta-grid { grid-template-columns: repeat(2, minmax(60px, 1fr)); }
 }
 
